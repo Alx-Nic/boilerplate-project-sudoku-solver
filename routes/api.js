@@ -28,6 +28,10 @@ module.exports = function (app) {
       return res.json({ error: "Invalid puzzle" });
     }
 
+    if (coordinate.length !== 2) {
+      return res.json({ error: "Invalid coordinate" });
+    }
+
     const rowLetter = coordinate[0].toLowerCase();
     const columnNumber = parseInt(coordinate[1]);
 

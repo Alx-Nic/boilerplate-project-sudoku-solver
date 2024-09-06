@@ -162,6 +162,24 @@ suite("Functional Tests", () => {
           done();
         });
     });
+    test("invalid coordinates two", function (done) {
+      chai
+        .request(server)
+        .post("/api/check")
+        .send({
+          puzzle:
+            "..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..",
+          coordinate: "A10",
+          value: "7",
+        })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.property(res.body, "error");
+          assert.equal(res.body.error, "Invalid coordinate");
+
+          done();
+        });
+    });
     test("invalid value", function (done) {
       chai
         .request(server)
